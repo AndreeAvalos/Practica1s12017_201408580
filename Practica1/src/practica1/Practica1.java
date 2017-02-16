@@ -5,6 +5,8 @@
  */
 package practica1;
 
+import LeerXML.LeerArchivo;
+
 /**
  *
  * @author Andree Avalos
@@ -16,7 +18,8 @@ public class Practica1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("practica1.Practica1.main()"); 
+        LeerArchivo abrir =new LeerArchivo();
+        abrir.show();
     }
     
 }
