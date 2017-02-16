@@ -130,29 +130,4 @@ public class ListaSimple {
             }
         }
     }
-    
-    public void GenerarGrafo(){
-        try {
-            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
-                
-                String fileInputPath = "C:\\graficas\\ListaSimple.txt";
-                String fileOutputPath = "C:\\graficas\\ListaSimple.png";
-      
-                String tParam = "-Tpng";
-                String tOParam = "-o";
-                
-                
-                String[] cmd = new String[5];
-                cmd[0] = dotPath;
-                cmd[1] = tParam;
-                cmd[2] = fileInputPath;
-                cmd[3] = tOParam;
-                cmd[4] = fileOutputPath;
-
-                Runtime rt = Runtime.getRuntime();
-
-                rt.exec( cmd );
-        } catch (IOException e) {
-        }
-    }
 }

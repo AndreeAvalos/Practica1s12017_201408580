@@ -5,7 +5,12 @@
  */
 package LeerXML;
 
+import Estructuras.Cola;
+import Estructuras.ListaCircular;
 import Estructuras.ListaSimple;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -77,7 +82,17 @@ public class LeerArchivo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
+
+        ListaCircular lstCircular = new ListaCircular();
+        lstCircular.Insertar("1");
+        lstCircular.Insertar("2");
+        lstCircular.Insertar("3");
+        lstCircular.Insertar("4");
+        try {
+            lstCircular.ConstruirTXT();
+        } catch (IOException ex) {
+            Logger.getLogger(LeerArchivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
