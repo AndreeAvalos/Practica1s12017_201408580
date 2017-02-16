@@ -27,8 +27,7 @@ public class LeerXML {
     
     public LeerXML() {
         JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "Archivos XML", "xml");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos XML", "xml");
         chooser.setFileFilter(filter);
         int returnVal = chooser.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -56,7 +55,7 @@ public class LeerXML {
             for (int i = 0; i < raiz.getChildren("dimension").size(); i++) {
                 Element campo = (Element) raiz.getChildren("dimension").get(i);
                 String dimension = campo.getTextTrim();
-                System.out.println("Dimension: " + dimension);
+                //System.out.println("Dimension: " + dimension);
             }
             /*---------------------------------------------------------------------------*/
             //Se obtiene el valor de dobles
@@ -65,7 +64,7 @@ public class LeerXML {
                 Element tabla = (Element) raiz.getChildren("dobles").get(i);
                 for (int j = 0; j < tabla.getChildren().size(); j++) {
                     Element campo = (Element) tabla.getChildren().get(j);
-                    System.out.println("x: " + campo.getChildTextTrim("x") + " y: " + campo.getChildTextTrim("y"));
+                    //System.out.println("x: " + campo.getChildTextTrim("x") + " y: " + campo.getChildTextTrim("y"));
 
                 }
             }
@@ -77,7 +76,7 @@ public class LeerXML {
                 Element tabla = (Element) raiz.getChildren("triples").get(i);
                 for (int j = 0; j < tabla.getChildren().size(); j++) {
                     Element campo = (Element) tabla.getChildren().get(j);
-                    System.out.println("x: " + campo.getChildTextTrim("x") + " y: " + campo.getChildTextTrim("y"));
+                    //System.out.println("x: " + campo.getChildTextTrim("x") + " y: " + campo.getChildTextTrim("y"));
                 }
             }
             /*----------------------------------------------------------------------------*/
@@ -97,6 +96,9 @@ public class LeerXML {
                     lstSimple.insertar(campo.getTextTrim());
                 }
             }
+
+            lstSimple.ConstruirTXT();
+            lstSimple.GenerarGrafo();
 
         } catch (IOException io) {
             System.out.println(io.getMessage());

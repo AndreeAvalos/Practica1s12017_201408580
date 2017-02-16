@@ -5,16 +5,21 @@
  */
 package Estructuras;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /**
  *
  * @author Andree
  */
 public class ListaSimple {
 
-    private NodoListaSimple raiz;
+    private NodoListaSimple raiz, ultimo;
 
     public ListaSimple() {
-        raiz=null;
+        raiz = null;
+        ultimo = null;
     }
 
     public boolean Vacia() {
@@ -25,23 +30,129 @@ public class ListaSimple {
         }
     }
 
-    public ListaSimple insertar(Object dato) {
+    public void insertar(Object dato) {
         NodoListaSimple nuevo = new NodoListaSimple(dato);
-        if (Vacia() == true) {
-            raiz=nuevo;
+        if (empy()) {
+            raiz = nuevo;
+            ultimo = nuevo;
+            ultimo.setEnlace(raiz);
         } else {
+            ultimo.setEnlace(nuevo);
             nuevo.setEnlace(raiz);
-            raiz=nuevo;
+            ultimo = nuevo;
         }
-        return this;
     }
-    public void Visualizar(){
-    NodoListaSimple aux;
-    aux=raiz;
-    while(aux!=null){
-        System.out.println(aux.getDato()+ "  ");
-        aux=aux.getEnlace();
+
+    public void Visualizar() {
+        NodoListaSimple aux;
+        aux = raiz;
+        while (aux != ultimo) {
+            System.out.println(aux.getDato() + "  ");
+            aux = aux.getEnlace();
+        }
+    }
+
+    public boolean empy() {
+        return raiz == null;
+    }
+
+    public void Eliminar(Object dato) {
+        NodoListaSimple Actual, Aux;
+        boolean encontrado = false;
+        Actual = raiz;
+        Aux = null;
+        while ((Actual != null) && (!encontrado)) {
+            encontrado = (Actual.getDato() == dato);
+            if (!encontrado) {
+                Aux = Actual;
+                Actual = Actual.getEnlace();
+            }
+        }
+        if (Actual != null) {
+            if (Actual == raiz) {
+                raiz = Actual.getEnlace();
+            } else {
+                Aux.setEnlace(Actual.getEnlace());
+            }
+        }
+    }
+
+    public void ConstruirTXT() throws IOException {
+        //instanciamos un objeto FileWriter que sera el archivo
+        FileWriter file = null;
+        //instanciamos un objeto PrintWriter para escribir dentro del archivo
+        PrintWriter writer = null;
+
+        try {
+            //La ubicacion del archivo 
+            file = new FileWriter("C:\\graficas\\ListaSimple.txt");
+
+            //declaramos especificaciones del archivo 
+            writer = new PrintWriter(file);
+            writer.append("digraph ListaSimple{ ");
+            writer.append("\tnode [fontcolor=\"cyan\", height=0.5, color=\"black\"]\n");
+            writer.append("[shape=box, style=filled, color=black]");
+            writer.append("\tedge  [color=\"black\", dir=fordware]\n");
+            writer.append("\trankdir=UD \n");
+            writer.append("\n");
+            if (!empy()) {
+
+                NodoListaSimple Actual = raiz;
+                int pos = 0;
+
+                do {
+                    if (pos == 0) {
+                        writer.append("\n"+Actual.getDato().toString());
+                    }
+                    if (Actual.getEnlace() != null && pos != 0) {
+                        writer.append("->" + Actual.getDato().toString());
+                    }
+                    Actual = Actual.getEnlace();
+                    pos++;
+                } while (Actual != raiz);
+
+                if (Actual == Actual.getEnlace()) {
+                    Actual = null;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != file) {
+                    writer.append("\n}");
+                    writer.close();
+                    file.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
     }
     
+    public void GenerarGrafo(){
+        try {
+            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+                
+                String fileInputPath = "C:\\graficas\\ListaSimple.txt";
+                String fileOutputPath = "C:\\graficas\\ListaSimple.png";
+      
+                String tParam = "-Tpng";
+                String tOParam = "-o";
+                
+                
+                String[] cmd = new String[5];
+                cmd[0] = dotPath;
+                cmd[1] = tParam;
+                cmd[2] = fileInputPath;
+                cmd[3] = tOParam;
+                cmd[4] = fileOutputPath;
+
+                Runtime rt = Runtime.getRuntime();
+
+                rt.exec( cmd );
+        } catch (IOException e) {
+        }
     }
 }

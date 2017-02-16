@@ -12,6 +12,11 @@ package Estructuras;
 public class NodoListaSimple {
     private NodoListaSimple enlace;
     private Object Dato;
+
+    public NodoListaSimple() {
+        this.enlace=null;
+        this.Dato=null;
+    }
     
     public NodoListaSimple(Object objeto){
     this.enlace= null;
