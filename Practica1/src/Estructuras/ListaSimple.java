@@ -77,7 +77,8 @@ public class ListaSimple {
         }
     }
 
-    public void ConstruirTXT() throws IOException {
+    public String ConstruirTXT() throws IOException {
+        
         //instanciamos un objeto FileWriter que sera el archivo
         FileWriter file = null;
         //instanciamos un objeto PrintWriter para escribir dentro del archivo
@@ -129,5 +130,6 @@ public class ListaSimple {
                 e2.printStackTrace();
             }
         }
+        return "ListaSimple";
     }
 }

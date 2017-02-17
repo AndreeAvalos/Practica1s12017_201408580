@@ -96,9 +96,7 @@ public class LeerXML {
                     lstSimple.insertar(campo.getTextTrim());
                 }
             }
-
             lstSimple.ConstruirTXT();
-            lstSimple.GenerarGrafo();
 
         } catch (IOException io) {
             System.out.println(io.getMessage());

@@ -5,9 +5,17 @@
  */
 package LeerXML;
 
+import MatrizOrtogonal.Cabeceras;
 import Estructuras.Cola;
+import MatrizOrtogonal.Laterales;
 import Estructuras.ListaCircular;
+import MatrizOrtogonal.ListaHorizontal;
 import Estructuras.ListaSimple;
+import MatrizOrtogonal.ListaVertical;
+import MatrizOrtogonal.MatrizOrtogonal;
+import MatrizOrtogonal.NodoCabecera;
+import MatrizOrtogonal.NodoLateral;
+import MatrizOrtogonal.NodoMatriz;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,21 +86,40 @@ public class LeerArchivo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new LeerXML();
+        new LeerXML();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+//        ListaHorizontal lstVertical = new ListaHorizontal();
+//        lstVertical.insertar(new NodoMatriz("1", 1, 4));
+//        lstVertical.insertar(new NodoMatriz("2", 2, 3));
+//        lstVertical.insertar(new NodoMatriz("3", 0, 5));
+//        lstVertical.insertar(new NodoMatriz("4", 9, 1));
+//
+//        lstVertical.recorrer();
+//
 
-        ListaCircular lstCircular = new ListaCircular();
-        lstCircular.Insertar("1");
-        lstCircular.Insertar("2");
-        lstCircular.Insertar("3");
-        lstCircular.Insertar("4");
-        try {
-            lstCircular.ConstruirTXT();
-        } catch (IOException ex) {
-            Logger.getLogger(LeerArchivo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        Cabeceras cabecera = new Cabeceras();
+//        cabecera.insertar(new NodoCabecera(4));
+//        cabecera.insertar(new NodoCabecera(6));
+//        cabecera.insertar(new NodoCabecera(0));
+//        cabecera.insertar(new NodoCabecera(9));
+//        cabecera.recorrer();
+//        boolean prueba;
+//        prueba = cabecera.Existe(4);
+//        System.out.println(prueba);
+//        
+//        System.out.println("----------------");
+//        
+//        Laterales Lateral = new Laterales();
+//        Lateral.insertar(new NodoLateral(1));
+//        Lateral.insertar(new NodoLateral(6));
+//        Lateral.insertar(new NodoLateral(0));
+//        Lateral.insertar(new NodoLateral(2));
+//        Lateral.recorrer();
+        MatrizOrtogonal matri = new MatrizOrtogonal(20);
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
