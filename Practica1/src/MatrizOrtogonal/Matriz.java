@@ -6,6 +6,7 @@
 package MatrizOrtogonal;
 
 import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
 import practica1.OTablero;
 import practica1.Tablero;
 
@@ -14,16 +15,16 @@ import practica1.Tablero;
  * @author Andree
  */
 public class Matriz {
-
+    
     Cabeceras cabecera;
     Laterales lateral;
     Object dato;
-
+    
     public Matriz() {
         cabecera = new Cabeceras();
         lateral = new Laterales();
     }
-
+    
     public void insertar(int x, int y, Object objeto) {
         NodoMatriz pos = new NodoMatriz(objeto, x, y);
         OTablero posT;
@@ -35,16 +36,16 @@ public class Matriz {
         }
         NodoCabecera temp;
         NodoLateral temp2;
-
+        
         temp = cabecera.Buscar(x);
         temp2 = lateral.Buscar(y);
-
+        
         temp.getColumna().insertar(pos);
         temp2.getFila().insertar(pos);
         posT = (OTablero) pos.getDato();
         //System.out.println("Posicion: " + posT.getPosx() + " " + posT.getPosy() + " Dato: " + posT.getLetra());
     }
-
+    
     public void recorrer() {
         NodoMatriz arriba, abajo, izquierda, derecha, Actual;
         OTablero pos;
@@ -57,35 +58,38 @@ public class Matriz {
         Tablero tab = new Tablero();
         while (derecha != null) {
             abajo = cabecera.primero.columna.primero;
-
+            
             while (abajo != null) {
-
+                
                 arriba = abajo;
                 //System.out.print(derecha.getX()+ "," + abajo.getY()+ " ");
                 pos = (OTablero) Actual.getDato();
                 //System.out.print(pos.getPosx() + "," + pos.getPosy() + " ");
                 JLabel posT = pos.getContenedor();
                 posT.setText(pos.getLetra());
+                posT.setBorder(LineBorder.createGrayLineBorder());
                 posT.setBounds(i * 35, j * 35, 35, 35);
                 tab.add(posT);
+                
                 i++;
                 
                 System.out.print(pos.getLetra() + "  ");
-
+                
                 abajo = abajo.getAbajo();
                 Actual = Actual.getAbajo();
             }
             j++;
-            i=0;
+            i = 0;
             System.out.println();
             izquierda = derecha;
             derecha = derecha.getDerecha();
             Actual = derecha;
         }
+
         tab.show();
-
+        
     }
-
+    
     public boolean vacio() {
         if (cabecera == null && lateral == null) {
             return true;
@@ -94,7 +98,7 @@ public class Matriz {
         }
     }
     int contador = 0;
-
+    
     public void llenar(int x, int y) {
         JLabel posT;
         String con = "";
