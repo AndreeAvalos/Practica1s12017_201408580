@@ -5,6 +5,8 @@
  */
 package MatrizOrtogonal;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author Andree
@@ -12,9 +14,10 @@ package MatrizOrtogonal;
 public class MatrizOrtogonal {
 
     Matriz mat = new Matriz();
-
+    
     public MatrizOrtogonal(int dimension) {
         mat.llenar(dimension, dimension);
+        mat.recorrer();
     }
 
 }
