@@ -5,6 +5,9 @@
  */
 package Estructuras;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 /**
  *
  * @author Andree
@@ -62,4 +65,55 @@ public class Cola {
         }
     }
 
+    public String ConstruirTXT() {
+        //instanciamos un objeto FileWriter que sera el archivo
+        FileWriter file = null;
+        //instanciamos un objeto PrintWriter para escribir dentro del archivo
+        PrintWriter writer = null;
+
+        try {
+            //La ubicacion del archivo 
+            file = new FileWriter("C:\\graficas\\Cola.txt");
+
+            //declaramos especificaciones del archivo 
+            writer = new PrintWriter(file);
+            writer.append("digraph ListaSimple{ ");
+            writer.append("\tnode [fontcolor=\"cyan\", height=0.5, color=\"black\"]\n");
+            writer.append("[shape=box, style=filled, color=black]");
+            writer.append("\tedge  [color=\"black\", dir=fordware]\n");
+            writer.append("\trankdir=UD \n");
+            writer.append("\n");
+            int contador = 0;
+            if (!Vacia()) {
+
+                NodoCola Actual;
+                Actual = raiz;
+                while (Actual != null) {
+                    contador++;
+                    Actual = Actual.getUltimo();
+                }
+
+            }
+            NodoCola Actual = raiz;
+            for (int i = 0; i < contador - 1; i++) {
+                writer.append(Actual.getDato() + "->");
+                Actual = Actual.getUltimo();
+            }
+            writer.append(ultimo.getDato() + "");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != file) {
+                    writer.append("\n}");
+                    writer.close();
+                    file.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return "Cola";
+    }
 }
