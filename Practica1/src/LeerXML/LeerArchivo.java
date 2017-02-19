@@ -107,17 +107,17 @@ public class LeerArchivo extends javax.swing.JFrame {
 //        Lateral.insertar(new NodoLateral(0));
 //        Lateral.insertar(new NodoLateral(2));
 //        Lateral.recorrer();
-        //MatrizOrtogonal matri = new MatrizOrtogonal(dim);
-        Cola cola = new Cola();
-        cola.Insertar("1");
-        cola.Insertar("2");
-        cola.Insertar("4");
-        cola.Insertar("3");
-        cola.Insertar("5");
-        cola.Visualizar();
+        MatrizOrtogonal matri = new MatrizOrtogonal(dim);
+//        Cola cola = new Cola();
+//        cola.Insertar("1");
+//        cola.Insertar("2");
+//        cola.Insertar("4");
+//        cola.Insertar("3");
+//        cola.Insertar("5");
+//        cola.Visualizar();
 
-        Tablero tab = new Tablero();
-        tab.GenerarGrafo(cola.ConstruirTXT());
+//        Tablero tab = new Tablero();
+//        tab.GenerarGrafo(cola.ConstruirTXT());
 
 
     }//GEN-LAST:event_jButton2ActionPerformed

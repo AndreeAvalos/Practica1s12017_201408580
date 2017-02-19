@@ -140,89 +140,109 @@ public class Matriz {
 
             Actual = derecha;
             OTablero pos, pos2, pos3;
+            int x = 0;
+            int y = 0;
 
             do {
                 abajo = cabecera.getPrimero().getColumna().getPrimero();
                 do {
                     pos = (OTablero) Actual.getDato();
-                    writer.append(pos.getNum() + "->");
+
+                    if (y == 0) {
+                        writer.append("\n" + pos.getNum());
+                    } else {
+                        writer.append("->" + pos.getNum());
+                    }
 
                     abajo = abajo.getAbajo();
                     Actual = Actual.getAbajo();
-                    
-                    
+
+                    y++;
                 } while (abajo != null);
-                
+
                 derecha = derecha.getDerecha();
                 Actual = derecha;
+                x++;
 
             } while (derecha != null);
 
             /*------------------------------------------------------------------------------------*/
-            
-            
+            x = 0;
+            y = 0;
+
             izquierda = cabecera.getUltimo().getColumna().getUltimo();
             Auxiliar = izquierda;
             while (izquierda != cabecera.getPrimero().getColumna().getPrimero() && izquierda != null) {
                 arriba = lateral.getUltimo().getFila().getUltimo();
                 while (arriba != lateral.getPrimero().getFila().getPrimero() && arriba != null) {
                     pos2 = (OTablero) Auxiliar.getDato();
-                    writer.append(pos2.getNum() + "->");
+                    if (y == 0) {
+                        writer.append("\n" + pos.getNum());
+                    } else {
+                        writer.append("->" + pos2.getNum());
+                    }
 
                     arriba = arriba.getArriba();
                     Auxiliar = Auxiliar.getArriba();
+                    y++;
                 }
                 izquierda = izquierda.getIzquierda();
                 Auxiliar = izquierda;
+                x++;
 
             }
 
             /*---------------------------------------------------*/
+            x = 0;
+            y = 0;
             abajo = cabecera.getPrimero().getColumna().getPrimero();
             Auxiliar3 = abajo;
             while (abajo != null) {
                 derecha = lateral.getPrimero().getFila().getPrimero();
                 while (derecha != null) {
                     pos3 = (OTablero) Auxiliar3.getDato();
-                    if (derecha == lateral.getUltimo().getFila().getUltimo()) {
-                        //writer.append(pos3.getNum() + "");
+                    if (x == 0) {
+                        writer.append("\n" + pos3.getNum());
                     } else {
-                        writer.append(pos3.getNum() + "->");
+                        writer.append("->" + pos3.getNum());
                     }
                     derecha = derecha.getDerecha();
                     Auxiliar3 = Auxiliar3.getDerecha();
+                    x++;
                 }
-
 
                 abajo = abajo.getAbajo();
                 Auxiliar3 = abajo;
+                y++;
             }
 
             ///********************************************************/
             /*---------------------------------------------------*/
             arriba = cabecera.getUltimo().getColumna().getUltimo();
             Auxiliar3 = arriba;
-
+            x = 0;
+            y = 0;
             while (arriba != null) {
                 izquierda = lateral.getUltimo().getFila().getUltimo();
                 while (izquierda != null) {
                     pos3 = (OTablero) Auxiliar3.getDato();
-                    if (izquierda == lateral.primero.fila.primero) {
-                        //writer.append(pos3.getNum() + "");
+                    if (x==0) {
+                        writer.append("\n" + pos3.getNum());
                     } else {
-                        writer.append(pos3.getNum() + "->");
+                         writer.append("->" + pos3.getNum());
                     }
                     izquierda = izquierda.getIzquierda();
                     Auxiliar3 = Auxiliar3.getIzquierda();
+                    x++;
                 }
-                
 
                 arriba = arriba.getArriba();
                 Auxiliar3 = arriba;
+                y++;
             }
-            OTablero inicial = (OTablero) cabecera.getPrimero().getColumna().getPrimero().getDato();
-
-            writer.append(inicial.getNum() + "");
+//            OTablero inicial = (OTablero) cabecera.getPrimero().getColumna().getPrimero().getDato();
+//
+//            writer.append(inicial.getNum() + "");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
