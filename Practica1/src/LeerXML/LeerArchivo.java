@@ -5,20 +5,8 @@
  */
 package LeerXML;
 
-import MatrizOrtogonal.Cabeceras;
-import Estructuras.Cola;
-import MatrizOrtogonal.Laterales;
-import Estructuras.ListaCircular;
-import MatrizOrtogonal.ListaHorizontal;
-import Estructuras.ListaSimple;
-import MatrizOrtogonal.ListaVertical;
+import static LeerXML.LeerXML.dim;
 import MatrizOrtogonal.MatrizOrtogonal;
-import MatrizOrtogonal.NodoCabecera;
-import MatrizOrtogonal.NodoLateral;
-import MatrizOrtogonal.NodoMatriz;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -117,7 +105,7 @@ public class LeerArchivo extends javax.swing.JFrame {
 //        Lateral.insertar(new NodoLateral(0));
 //        Lateral.insertar(new NodoLateral(2));
 //        Lateral.recorrer();
-        MatrizOrtogonal matri = new MatrizOrtogonal(20);
+ MatrizOrtogonal matri = new MatrizOrtogonal(dim);
 
 
     }//GEN-LAST:event_jButton2ActionPerformed

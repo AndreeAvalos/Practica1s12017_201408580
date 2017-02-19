@@ -14,6 +14,22 @@ public class ListaVertical {
     NodoMatriz primero;
     NodoMatriz ultimo;
 
+    public NodoMatriz getPrimero() {
+        return primero;
+    }
+
+    public void setPrimero(NodoMatriz primero) {
+        this.primero = primero;
+    }
+
+    public NodoMatriz getUltimo() {
+        return ultimo;
+    }
+
+    public void setUltimo(NodoMatriz ultimo) {
+        this.ultimo = ultimo;
+    }
+
     public ListaVertical() {
         primero = ultimo = null;
     }

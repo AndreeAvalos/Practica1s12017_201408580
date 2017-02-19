@@ -6,9 +6,10 @@
 package LeerXML;
 
 import Estructuras.ListaSimple;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.jdom2.Document;
@@ -23,8 +24,7 @@ import org.jdom2.input.SAXBuilder;
 public class LeerXML {
 
     private String ruta = "";
-
-    
+    public static int dim=0;
     public LeerXML() {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos XML", "xml");
@@ -51,12 +51,16 @@ public class LeerXML {
             //List lstDimension = raiz.getChildren("dimension");
             //List lstTriples = raiz.getChildren("triples");
             //List lstDiccionario = raiz.getChildren("diccionario");
+            String dimension = "";
             System.out.println("DIMENSIONES");
             for (int i = 0; i < raiz.getChildren("dimension").size(); i++) {
                 Element campo = (Element) raiz.getChildren("dimension").get(i);
-                String dimension = campo.getTextTrim();
+                dimension = campo.getTextTrim();
+                dim = Integer.parseInt(dimension);
                 //System.out.println("Dimension: " + dimension);
             }
+           
+
             /*---------------------------------------------------------------------------*/
             //Se obtiene el valor de dobles
             System.out.println("DOBLES");

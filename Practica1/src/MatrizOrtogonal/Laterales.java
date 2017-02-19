@@ -106,4 +106,21 @@ public class Laterales {
             return (new NodoLateral(-1));
         }
     }
+
+    public NodoLateral getPrimero() {
+        return primero;
+    }
+
+    public void setPrimero(NodoLateral primero) {
+        this.primero = primero;
+    }
+
+    public NodoLateral getUltimo() {
+        return ultimo;
+    }
+
+    public void setUltimo(NodoLateral ultimo) {
+        this.ultimo = ultimo;
+    }
+    
 }

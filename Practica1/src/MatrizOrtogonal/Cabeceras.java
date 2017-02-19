@@ -106,4 +106,21 @@ public class Cabeceras {
             return (new NodoCabecera(-1));
         }
     }
+
+    public NodoCabecera getPrimero() {
+        return primero;
+    }
+
+    public void setPrimero(NodoCabecera primero) {
+        this.primero = primero;
+    }
+
+    public NodoCabecera getUltimo() {
+        return ultimo;
+    }
+
+    public void setUltimo(NodoCabecera ultimo) {
+        this.ultimo = ultimo;
+    }
+    
 }

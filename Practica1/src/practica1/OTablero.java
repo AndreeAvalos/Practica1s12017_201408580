@@ -13,11 +13,13 @@ import javax.swing.JLabel;
  * @author Andree
  */
 public class OTablero {
+
     private int posx;
     private int posy;
     private Image imagen;
     private JLabel contenedor;
     private String letra;
+    private int num;
 
     public int getPosx() {
         return posx;
@@ -58,6 +60,14 @@ public class OTablero {
     public void setLetra(String letra) {
         this.letra = letra;
     }
-    
-    
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+
 }

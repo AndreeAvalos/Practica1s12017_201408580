@@ -74,4 +74,21 @@ public class ListaHorizontal {
             }
         }
     }
+
+    public NodoMatriz getPrimero() {
+        return primero;
+    }
+
+    public void setPrimero(NodoMatriz primero) {
+        this.primero = primero;
+    }
+
+    public NodoMatriz getUltimo() {
+        return ultimo;
+    }
+
+    public void setUltimo(NodoMatriz ultimo) {
+        this.ultimo = ultimo;
+    }
+    
 }

@@ -14,10 +14,11 @@ import javax.swing.JLabel;
 public class MatrizOrtogonal {
 
     Matriz mat = new Matriz();
-    
+
     public MatrizOrtogonal(int dimension) {
         mat.llenar(dimension, dimension);
         mat.recorrer();
+        mat.GenerarGrafo(mat.ConstruirTXT());
     }
 
 }
