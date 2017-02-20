@@ -79,7 +79,6 @@ public class Matriz {
             }
             j++;
             i = 0;
-            System.out.println();
             izquierda = derecha;
             derecha = derecha.getDerecha();
             Actual = derecha;
@@ -110,24 +109,23 @@ public class Matriz {
                 data.setContenedor(posT);
                 //con = Integer.toString(contador);
                 //System.out.println("POS x:"+data.getPosx()+" Y: "+data.getPosy());
-                
+                data.setNum(contador);
                 switch (ListaValores.ExistePos(i, j)) {
                     case 1:
-                        data.setNum(1);
+                        data.setValor(1);
                         break;
                     case 2:
-                        data.setNum(2);
+                        data.setValor(2);
                         break;
                     case 3:
-                        data.setNum(3);
+                        data.setValor(3);
                         break;
                     default:
-                        data.setNum(1);
+                        data.setValor(1);
                         break;
                 }
-
-                insertar(i, j, data);
-                
+                insertar(i, j, data);  
+                contador++;
             }
         }
 

@@ -6,6 +6,7 @@
 package Estructuras;
 
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
@@ -65,7 +66,18 @@ public class Cola {
         }
     }
 
-    public String ConstruirTXT() {
+    public int tamaño() {
+        int tama = 0;
+        NodoCola Actual;
+        Actual = raiz;
+        while (Actual != null) {
+            tama++;
+            Actual = Actual.getUltimo();
+        }
+        return tama;
+    }
+
+    public String ConstruirTXT(Cola cola) {
         //instanciamos un objeto FileWriter que sera el archivo
         FileWriter file = null;
         //instanciamos un objeto PrintWriter para escribir dentro del archivo
@@ -87,22 +99,21 @@ public class Cola {
             if (!Vacia()) {
 
                 NodoCola Actual;
-                Actual = raiz;
+                Actual = cola.raiz;
                 while (Actual != null) {
                     contador++;
                     Actual = Actual.getUltimo();
                 }
 
             }
-            NodoCola Actual = raiz;
+            NodoCola Actual = cola.raiz;
             for (int i = 0; i < contador - 1; i++) {
                 writer.append(Actual.getDato() + "->");
                 Actual = Actual.getUltimo();
             }
-            writer.append(ultimo.getDato() + "");
+            writer.append(cola.ultimo.getDato() + "");
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
         } finally {
             try {
                 if (null != file) {
@@ -110,8 +121,7 @@ public class Cola {
                     writer.close();
                     file.close();
                 }
-            } catch (Exception e2) {
-                e2.printStackTrace();
+            } catch (IOException e2) {
             }
         }
         return "Cola";

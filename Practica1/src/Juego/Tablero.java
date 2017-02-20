@@ -12,7 +12,11 @@ import Estructuras.NodoListaSimple;
 import static Juego.NewJugador.ListaJugadores;
 import static LeerXML.LeerXML.ListaPalabras;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
@@ -28,6 +32,11 @@ public class Tablero extends javax.swing.JFrame {
     NodoListaCircular PlayerActual;
     Jugador jugador;
     LlenarJugador cambio;
+    private String grafoActual = "img";
+    private int Constructor = 0;
+    boolean fin = false;
+
+    JLabel label;
 
     /**
      * Creates new form Tablero
@@ -41,6 +50,8 @@ public class Tablero extends javax.swing.JFrame {
         PlayerActual = Jugadores.getInicio();
         llenarJList();
         llenarComponentes();
+        cambio();
+
     }
 
     public void llenarJList() {
@@ -129,6 +140,7 @@ public class Tablero extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -152,27 +164,57 @@ public class Tablero extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Matriz");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Lista Fichas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Diccionario");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("jButton4");
+        jButton4.setText("Cola Ficha");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("jButton5");
+        jButton5.setText("Jugadores");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("jButton6");
+
+        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 478, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jButton7.setText("jButton7");
@@ -205,6 +247,11 @@ public class Tablero extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jButton15.setText("jButton15");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setText("jButton16");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -230,9 +277,9 @@ public class Tablero extends javax.swing.JFrame {
                             .addComponent(jButton13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4)
-                            .addComponent(jButton1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -300,7 +347,7 @@ public class Tablero extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton15)
                     .addComponent(jButton16))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -318,13 +365,54 @@ public class Tablero extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        
+
         jugador = cambio.cambioTurno(jugador);
         jugador.setLista(cambio.GenerarLista(jugador.getCola()));
         PlayerActual = PlayerActual.getSiguiente();
         llenarComponentes();
 
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Constructor = 2;
+        Imagen.stop();
+        cambio();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Constructor = 3;
+        Imagen.stop();
+        cambio();
+
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        Constructor = 4;
+        Imagen.stop();
+        cambio();
+
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        Constructor = 5;
+        Imagen.stop();
+        cambio();
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,6 +482,7 @@ public class Tablero extends javax.swing.JFrame {
         }
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -412,10 +501,159 @@ public class Tablero extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
+//    @Override
+//    public void run() {
+//        while (fin != true) {
+//            switch (Constructor) {
+//                case 1:
+//
+//                    break;
+//                case 2: {
+//                    try {
+//                        listaLetras.ConstruirTXT(listaLetras);
+//                        grafoActual = "ListaSimple";
+//                        GenerarGrafo(grafoActual);
+//                        String path = "C:\\graficas\\" + grafoActual + ".png";
+//                        jLabel2.setIcon(new ImageIcon(path));
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                }
+//                break;
+//                case 3: {
+//                    try {
+//                        Palabras.ConstruirTXT(Palabras);
+//                        grafoActual = "ListaSimple";
+//                        GenerarGrafo(grafoActual);
+//                        String path = "C:\\graficas\\" + grafoActual + ".png";
+//                        jLabel2.setIcon(new ImageIcon(path));
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                }
+//                break;
+//                case 4:
+//                    jugador.getCola().ConstruirTXT(jugador.getCola());
+//                    grafoActual = "Cola";
+//                    GenerarGrafo(grafoActual);
+//                    String path = "C:\\graficas\\" + grafoActual + ".png";
+//                    jLabel2.setIcon(new ImageIcon(path));
+//                    break;
+//                case 5: {
+//                    try {
+//                        Jugadores.ConstruirTXT(Jugadores);
+//                        grafoActual = "ListaCircular";
+//                        GenerarGrafo(grafoActual);
+//                        String patht = "C:\\graficas\\" + grafoActual + ".png";
+//                        jLabel2.setIcon(new ImageIcon(patht));
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                }
+//                break;
+//                default:
+//                    break;
+//            }
+//
+//            String path = "C:\\graficas\\" + grafoActual + ".png";
+//            jLabel2.setIcon(new ImageIcon(path));
+//        }
+//    }
+//
+//    public void iniciarHilo() {
+//        hilo = new Thread(this);
+//        hilo.start();
+//        System.out.println("Inicio Hilo");
+//
+//    }
+    ImageIcon image = new ImageIcon();
+    Thread Imagen;
+    String path = "C:\\graficas\\" + grafoActual + ".png";
+
+    int con;
+
+    public void cambio() {
+        con = 0;
+
+        Imagen = new Thread() {
+            @Override
+            public void run() {
+
+                try {
+                    while (true) {
+                        label = jLabel2;
+
+                        con++;
+                        switch (Constructor) {
+                            case 1:
+
+                                break;
+                            case 2: {
+                                try {
+                                    listaLetras.ConstruirTXT(listaLetras);
+                                    grafoActual = "ListaSimple";
+                                    GenerarGrafo(grafoActual);
+                                    path = "C:\\graficas\\" + grafoActual + ".png";
+                                    label.setIcon(new ImageIcon(path));
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                            break;
+                            case 3: {
+                                try {
+                                    Palabras.ConstruirTXT(Palabras);
+                                    grafoActual = "ListaSimple";
+                                    GenerarGrafo(grafoActual);
+                                    path = "C:\\graficas\\" + grafoActual + ".png";
+                                   label.setIcon(new ImageIcon(path));
+
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                            break;
+                            case 4:
+                                jugador.getCola().ConstruirTXT(jugador.getCola());
+                                grafoActual = "Cola";
+                                GenerarGrafo(grafoActual);
+                                path = "C:\\graficas\\" + grafoActual + ".png";
+                                label.setIcon(new ImageIcon(path));
+
+                                break;
+                            case 5: {
+                                try {
+                                    Jugadores.ConstruirTXT(Jugadores);
+                                    grafoActual = "ListaCircular";
+                                    GenerarGrafo(grafoActual);
+                                    path = "C:\\graficas\\" + grafoActual + ".png";
+                                   label.setIcon(new ImageIcon(path));
+
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                            break;
+                            default:
+                                break;
+                        }
+                        Thread.sleep(500);
+                        jLabel2=label;
+//                        System.out.println(con + "");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+            }
+        };
+        Imagen.start();
+    }
 }

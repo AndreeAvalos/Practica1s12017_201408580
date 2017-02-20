@@ -268,12 +268,10 @@ public class LlenarJugador {
         Cola aux2 = player.getCola();
         NodoListaSimple Actual = aux.getRaiz();
 
-        for (int i = 0; i < aux.tamaño(); i++) {
-            System.out.println(Actual.getDato() + "");
-            aux2.Insertar(Actual.getDato().toString());
+        for (int i = 0; i < aux.tamaño()+1; i++) {
+            player.getCola().Insertar(Actual.getDato());
             Actual = Actual.getEnlace();
         }
-        player.setCola(aux2);
         player.setLista(aux);
 
         return player;

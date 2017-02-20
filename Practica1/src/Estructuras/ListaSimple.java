@@ -53,7 +53,6 @@ public class ListaSimple {
             while (Actual != ultimo) {
                 Valor valor = (Valor) Actual.getDato();
                 if (x == valor.getPosx() && y == valor.getPosy()) {
-                    System.out.println("se encontro");
                     return valor.getValor();
                 }
                 Actual = Actual.getEnlace();
@@ -115,7 +114,7 @@ public class ListaSimple {
         }
     }
 
-    public String ConstruirTXT() throws IOException {
+    public String ConstruirTXT(ListaSimple lista) throws IOException {
 
         //instanciamos un objeto FileWriter que sera el archivo
         FileWriter file = null;
@@ -136,7 +135,7 @@ public class ListaSimple {
             writer.append("\n");
             if (!empy()) {
 
-                NodoListaSimple Actual = raiz;
+                NodoListaSimple Actual = lista.getRaiz();
                 int pos = 0;
 
                 do {

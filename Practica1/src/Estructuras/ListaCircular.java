@@ -54,7 +54,7 @@ public class ListaCircular {
         tamaño++;
     }
 
-    public String ConstruirTXT() throws IOException {
+    public String ConstruirTXT(ListaCircular lista) throws IOException {
         //instanciamos un objeto FileWriter que sera el archivo
         FileWriter file = null;
         //instanciamos un objeto PrintWriter para escribir dentro del archivo
@@ -75,20 +75,17 @@ public class ListaCircular {
 
             Jugador jugador;
 
-            if (!esVacia()) {
+            NodoListaCircular aux = lista.inicio;
 
-                NodoListaCircular aux = inicio;
+            do {
+                jugador = (Jugador) aux.getDato();
+                writer.append(jugador.getNombre() + "->");
+                aux = aux.getSiguiente();
+            } while (aux != lista.inicio);
 
-                do {
-                    jugador = (Jugador) aux.getDato();
-                    writer.append(jugador.getNombre() + "->");
-                    aux = aux.getSiguiente();
-
-                } while (aux != inicio);
-
-                if (aux == inicio) {
-                    writer.append(inicio.getDato().toString());
-                }
+            if (aux == lista.inicio) {
+                jugador = (Jugador) lista.inicio.getDato();
+                writer.append(jugador.getNombre());
             }
 
             writer.append("\n}");

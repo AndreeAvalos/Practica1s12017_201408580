@@ -19,8 +19,20 @@ public class OTablero {
     private Image imagen;
     private JLabel contenedor;
     private String letra;
+    private int valor;
     private int num;
 
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+
+
+
+    
     public int getPosx() {
         return posx;
     }

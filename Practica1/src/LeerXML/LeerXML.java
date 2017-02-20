@@ -113,7 +113,7 @@ public class LeerXML {
                     ListaPalabras.insertar(campo.getTextTrim());
                 }
             }
-            ListaPalabras.ConstruirTXT();
+            ListaPalabras.ConstruirTXT(ListaPalabras);
 
         } catch (IOException | JDOMException io) {
             System.out.println(io.getMessage());
