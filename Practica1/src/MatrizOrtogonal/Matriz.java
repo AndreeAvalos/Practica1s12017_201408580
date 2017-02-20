@@ -10,8 +10,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
-import practica1.OTablero;
-import practica1.Tablero;
+import Juego.OTablero;
+import Juego.Tablero;
+import static LeerXML.LeerXML.ListaValores;
 
 /**
  *
@@ -109,9 +110,24 @@ public class Matriz {
                 data.setContenedor(posT);
                 //con = Integer.toString(contador);
                 //System.out.println("POS x:"+data.getPosx()+" Y: "+data.getPosy());
-                data.setNum(contador);
+                
+                switch (ListaValores.ExistePos(i, j)) {
+                    case 1:
+                        data.setNum(1);
+                        break;
+                    case 2:
+                        data.setNum(2);
+                        break;
+                    case 3:
+                        data.setNum(3);
+                        break;
+                    default:
+                        data.setNum(1);
+                        break;
+                }
+
                 insertar(i, j, data);
-                contador++;
+                
             }
         }
 
@@ -226,10 +242,10 @@ public class Matriz {
                 izquierda = lateral.getUltimo().getFila().getUltimo();
                 while (izquierda != null) {
                     pos3 = (OTablero) Auxiliar3.getDato();
-                    if (x==0) {
+                    if (x == 0) {
                         writer.append("\n" + pos3.getNum());
                     } else {
-                         writer.append("->" + pos3.getNum());
+                        writer.append("->" + pos3.getNum());
                     }
                     izquierda = izquierda.getIzquierda();
                     Auxiliar3 = Auxiliar3.getIzquierda();
@@ -240,11 +256,8 @@ public class Matriz {
                 Auxiliar3 = arriba;
                 y++;
             }
-//            OTablero inicial = (OTablero) cabecera.getPrimero().getColumna().getPrimero().getDato();
-//
-//            writer.append(inicial.getNum() + "");
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        } catch (IOException e) {
         } finally {
             try {
                 if (null != file) {
@@ -252,8 +265,7 @@ public class Matriz {
                     writer.close();
                     file.close();
                 }
-            } catch (Exception e2) {
-                e2.printStackTrace();
+            } catch (IOException e2) {
             }
         }
         return "Matriz";

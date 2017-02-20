@@ -8,6 +8,7 @@ package Estructuras;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import Juego.Jugador;
 
 /**
  *
@@ -34,8 +35,8 @@ public class ListaCircular {
         return inicio == null;
     }
 
-    public void Insertar(String valor) {
-        NodoListaCircular nuevo = new NodoListaCircular(valor);
+    public void Insertar(Object dato) {
+        NodoListaCircular nuevo = new NodoListaCircular(dato);
 
         if (esVacia()) {
             inicio = nuevo;
@@ -71,13 +72,16 @@ public class ListaCircular {
             writer.append("\tedge  [color=\"black\", dir=fordware]\n");
             writer.append("\trankdir=LR \n");
             writer.append("\n");
+
+            Jugador jugador;
+
             if (!esVacia()) {
 
                 NodoListaCircular aux = inicio;
 
                 do {
-
-                    writer.append(aux.getDato() + "->");
+                    jugador = (Jugador) aux.getDato();
+                    writer.append(jugador.getNombre() + "->");
                     aux = aux.getSiguiente();
 
                 } while (aux != inicio);
@@ -104,5 +108,37 @@ public class ListaCircular {
         }
         return "ListaCircular";
     }
-    
+
+    public boolean Existe(String nombre) {
+        if (!esVacia()) {
+            NodoListaCircular Actual = inicio;
+            Jugador jugador;
+            do {
+                jugador = (Jugador) Actual.getDato();
+                if (jugador.getNombre().equals(nombre)) {
+                    return true;
+                } else {
+                    Actual = Actual.getSiguiente();
+                }
+            } while (Actual != inicio);
+        }
+        return false;
+    }
+
+    public NodoListaCircular getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(NodoListaCircular inicio) {
+        this.inicio = inicio;
+    }
+
+    public NodoListaCircular getUltimo() {
+        return ultimo;
+    }
+
+    public void setUltimo(NodoListaCircular ultimo) {
+        this.ultimo = ultimo;
+    }
+
 }

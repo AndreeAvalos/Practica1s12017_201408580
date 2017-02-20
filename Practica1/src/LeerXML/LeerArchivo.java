@@ -6,15 +6,27 @@
 package LeerXML;
 
 import Estructuras.Cola;
+import Estructuras.ListaCircular;
+import Estructuras.ListaSimple;
 import static LeerXML.LeerXML.dim;
 import MatrizOrtogonal.MatrizOrtogonal;
-import practica1.Tablero;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import Juego.Jugador;
+import Juego.LlenarJugador;
+import Juego.NewJugador;
+import Juego.Tablero;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 /**
  *
  * @author Andree
  */
 public class LeerArchivo extends javax.swing.JFrame {
+
+    private boolean cargo = false;
 
     /**
      * Creates new form LeerArchivo
@@ -77,6 +89,7 @@ public class LeerArchivo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new LeerXML();
+        cargo = true;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -107,7 +120,7 @@ public class LeerArchivo extends javax.swing.JFrame {
 //        Lateral.insertar(new NodoLateral(0));
 //        Lateral.insertar(new NodoLateral(2));
 //        Lateral.recorrer();
-        MatrizOrtogonal matri = new MatrizOrtogonal(dim);
+//        MatrizOrtogonal matri = new MatrizOrtogonal(dim);
 //        Cola cola = new Cola();
 //        cola.Insertar("1");
 //        cola.Insertar("2");
@@ -115,11 +128,17 @@ public class LeerArchivo extends javax.swing.JFrame {
 //        cola.Insertar("3");
 //        cola.Insertar("5");
 //        cola.Visualizar();
-
 //        Tablero tab = new Tablero();
 //        tab.GenerarGrafo(cola.ConstruirTXT());
-
-
+//        ListaCircular lstcircular = new ListaCircular();
+        if (cargo == true) {
+            NewJugador jugador = new NewJugador();
+            jugador.show();
+            this.hide();
+        } else{
+             JOptionPane.showMessageDialog(this, "No has cargado ningun archivo", "Error", INFORMATION_MESSAGE);
+        }
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

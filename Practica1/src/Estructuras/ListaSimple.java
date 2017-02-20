@@ -5,6 +5,7 @@
  */
 package Estructuras;
 
+import Juego.Valor;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import java.io.PrintWriter;
 public class ListaSimple {
 
     private NodoListaSimple raiz, ultimo;
+    int tamaño;
 
     public ListaSimple() {
         raiz = null;
@@ -43,6 +45,23 @@ public class ListaSimple {
         }
     }
 
+    public int ExistePos(int x, int y) {
+        NodoListaSimple Actual = raiz;
+        if (empy()) {
+            return 1;
+        } else {
+            while (Actual != ultimo) {
+                Valor valor = (Valor) Actual.getDato();
+                if (x == valor.getPosx() && y == valor.getPosy()) {
+                    System.out.println("se encontro");
+                    return valor.getValor();
+                }
+                Actual = Actual.getEnlace();
+            }
+        }
+        return 1;
+    }
+
     public void Visualizar() {
         NodoListaSimple aux;
         aux = raiz;
@@ -50,10 +69,29 @@ public class ListaSimple {
             System.out.println(aux.getDato() + "  ");
             aux = aux.getEnlace();
         }
+        if (aux == ultimo) {
+            System.out.println(aux.getDato() + "  ");
+        }
     }
 
     public boolean empy() {
         return raiz == null;
+    }
+
+    public void eliminar() {
+        raiz = null;
+    }
+
+    public int tamaño() {
+        NodoListaSimple Actual;
+        tamaño = 0;
+        Actual = raiz;
+
+        while (Actual != ultimo) {
+            tamaño++;
+            Actual = Actual.getEnlace();
+        }
+        return tamaño;
     }
 
     public void Eliminar(Object dato) {
@@ -78,7 +116,7 @@ public class ListaSimple {
     }
 
     public String ConstruirTXT() throws IOException {
-        
+
         //instanciamos un objeto FileWriter que sera el archivo
         FileWriter file = null;
         //instanciamos un objeto PrintWriter para escribir dentro del archivo
@@ -103,7 +141,7 @@ public class ListaSimple {
 
                 do {
                     if (pos == 0) {
-                        writer.append("\n"+Actual.getDato().toString());
+                        writer.append("\n" + Actual.getDato().toString());
                     }
                     if (Actual.getEnlace() != null && pos != 0) {
                         writer.append("->" + Actual.getDato().toString());
@@ -132,4 +170,21 @@ public class ListaSimple {
         }
         return "ListaSimple";
     }
+
+    public NodoListaSimple getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(NodoListaSimple raiz) {
+        this.raiz = raiz;
+    }
+
+    public NodoListaSimple getUltimo() {
+        return ultimo;
+    }
+
+    public void setUltimo(NodoListaSimple ultimo) {
+        this.ultimo = ultimo;
+    }
+
 }
