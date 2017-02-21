@@ -37,7 +37,7 @@ public class LlenarJugador {
     public LlenarJugador(ListaCircular lista) {
         this.ListaCircular = lista;
         jugador = null;
-        cola = null;
+        cola = GenerarFichas();
     }
 
     public boolean Existe(String nombre) {
@@ -53,7 +53,6 @@ public class LlenarJugador {
         jugador = new Jugador();
         jugador.setNombre(nombre);
         jugador.setPunteo(0);
-        jugador.setCola(GenerarFichas());
         jugador.setLista(GenerarLista());
         ListaCircular.Insertar(jugador);
     }
@@ -265,16 +264,24 @@ public class LlenarJugador {
 
     public Jugador cambioTurno(Jugador player) {
         ListaSimple aux = player.getLista();
-        Cola aux2 = player.getCola();
+        Cola aux2 = cola;
         NodoListaSimple Actual = aux.getRaiz();
 
-        for (int i = 0; i < aux.tamaño()+1; i++) {
-            player.getCola().Insertar(Actual.getDato());
+        for (int i = 0; i < aux.tamaño() + 1; i++) {
+            cola.Insertar(Actual.getDato());
             Actual = Actual.getEnlace();
         }
         player.setLista(aux);
 
         return player;
+    }
+
+    public void CambiarLetra(Jugador player, int pos) {
+        NodoListaSimple Actual = player.getLista().getRaiz();
+        
+        for (int i = 0; i < pos; i++) {
+            player.getLista().Eliminar(i);
+        }
     }
 
 }
