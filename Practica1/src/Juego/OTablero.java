@@ -7,6 +7,7 @@ package Juego;
 
 import java.awt.Image;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -17,7 +18,7 @@ public class OTablero {
     private int posx;
     private int posy;
     private Image imagen;
-    private JLabel contenedor;
+    private JTextField contenedor;
     private String letra;
     private int valor;
     private int num;
@@ -30,9 +31,6 @@ public class OTablero {
         this.valor = valor;
     }
 
-
-
-    
     public int getPosx() {
         return posx;
     }
@@ -57,11 +55,11 @@ public class OTablero {
         this.imagen = imagen;
     }
 
-    public JLabel getContenedor() {
+    public JTextField getContenedor() {
         return contenedor;
     }
 
-    public void setContenedor(JLabel contenedor) {
+    public void setContenedor(JTextField contenedor) {
         this.contenedor = contenedor;
     }
 
@@ -80,6 +78,5 @@ public class OTablero {
     public void setNum(int num) {
         this.num = num;
     }
-
 
 }

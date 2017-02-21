@@ -11,14 +11,19 @@ import Estructuras.NodoListaCircular;
 import Estructuras.NodoListaSimple;
 import static Juego.NewJugador.ListaJugadores;
 import static LeerXML.LeerXML.ListaPalabras;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import javax.swing.TransferHandler;
 
 /**
  *
@@ -35,6 +40,7 @@ public class Tablero extends javax.swing.JFrame {
     private String grafoActual = "img";
     private int Constructor = 0;
     boolean fin = false;
+    JButton boton;
 
     JLabel label;
 
@@ -51,7 +57,6 @@ public class Tablero extends javax.swing.JFrame {
         llenarJList();
         llenarComponentes();
         cambio();
-
     }
 
     public void llenarJList() {
@@ -223,30 +228,83 @@ public class Tablero extends javax.swing.JFrame {
                 jButton7MouseDragged(evt);
             }
         });
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton7MouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton7MousePressed(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("jButton8");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton8MouseEntered(evt);
+            }
+        });
 
         jButton9.setText("jButton9");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton9MouseEntered(evt);
+            }
+        });
 
         jButton10.setText("jButton10");
         jButton10.setPreferredSize(new java.awt.Dimension(73, 23));
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton10MouseEntered(evt);
+            }
+        });
 
         jButton11.setText("jButton11");
         jButton11.setPreferredSize(new java.awt.Dimension(73, 23));
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton11MouseEntered(evt);
+            }
+        });
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("jButton12");
         jButton12.setPreferredSize(new java.awt.Dimension(73, 23));
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton12MouseExited(evt);
+            }
+        });
 
         jButton13.setText("jButton13");
         jButton13.setPreferredSize(new java.awt.Dimension(73, 23));
+        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton13MouseEntered(evt);
+            }
+        });
 
         jLabel1.setText("Ingresar Palabra");
 
         jButton14.setText("Ingresar");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(jList1);
 
-        jButton15.setText("jButton15");
+        jButton15.setText("Ingresar Usuario");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton15ActionPerformed(evt);
@@ -361,6 +419,7 @@ public class Tablero extends javax.swing.JFrame {
     private void jButton7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseDragged
         // TODO add your handling code here:
 
+
     }//GEN-LAST:event_jButton7MouseDragged
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -412,7 +471,71 @@ public class Tablero extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
+        String usuario = JOptionPane.showInputDialog(null, "Usuario");
+        LlenarJugador lst = new LlenarJugador(Jugadores);
+        if (lst.Existe(usuario) == true) {
+            JOptionPane.showMessageDialog(this, "Usuario Existe", "Error", INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario Creado", "Felicidades", INFORMATION_MESSAGE);
+            llenarJList();
+
+        }
     }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        Palabras.insertar(jTextField1.getText());
+        jTextField1.setText("");
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MousePressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton7MousePressed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
+        // TODO add your handling code here:
+        mover(jButton7);
+    }//GEN-LAST:event_jButton7MouseEntered
+
+    private void jButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseEntered
+        // TODO add your handling code here:
+        mover(jButton8);
+    }//GEN-LAST:event_jButton8MouseEntered
+
+    private void jButton9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseEntered
+        // TODO add your handling code here:
+        mover(jButton9);
+    }//GEN-LAST:event_jButton9MouseEntered
+
+    private void jButton10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseEntered
+        // TODO add your handling code here:
+        mover(jButton10);
+    }//GEN-LAST:event_jButton10MouseEntered
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseEntered
+        // TODO add your handling code here:
+        mover(jButton11);
+    }//GEN-LAST:event_jButton11MouseEntered
+
+    private void jButton12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseExited
+        // TODO add your handling code here:
+        mover(jButton12);
+    }//GEN-LAST:event_jButton12MouseExited
+
+    private void jButton13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseEntered
+        // TODO add your handling code here:
+        mover(jButton13);
+    }//GEN-LAST:event_jButton13MouseEntered
 
     /**
      * @param args the command line arguments
@@ -613,7 +736,7 @@ public class Tablero extends javax.swing.JFrame {
                                     grafoActual = "ListaSimple";
                                     GenerarGrafo(grafoActual);
                                     path = "C:\\graficas\\" + grafoActual + ".png";
-                                   label.setIcon(new ImageIcon(path));
+                                    label.setIcon(new ImageIcon(path));
 
                                 } catch (IOException ex) {
                                     Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
@@ -634,7 +757,7 @@ public class Tablero extends javax.swing.JFrame {
                                     grafoActual = "ListaCircular";
                                     GenerarGrafo(grafoActual);
                                     path = "C:\\graficas\\" + grafoActual + ".png";
-                                   label.setIcon(new ImageIcon(path));
+                                    label.setIcon(new ImageIcon(path));
 
                                 } catch (IOException ex) {
                                     Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
@@ -645,7 +768,7 @@ public class Tablero extends javax.swing.JFrame {
                                 break;
                         }
                         Thread.sleep(500);
-                        jLabel2=label;
+                        jLabel2 = label;
 //                        System.out.println(con + "");
                     }
                 } catch (InterruptedException ex) {
@@ -655,5 +778,37 @@ public class Tablero extends javax.swing.JFrame {
             }
         };
         Imagen.start();
+    }
+
+    public void mover(JButton button) {
+        boton = button;
+        MouseListener ml = new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                JComponent jc = (JComponent) e.getSource();
+                TransferHandler th = jc.getTransferHandler();
+                th.exportAsDrag(jc, e, TransferHandler.COPY);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        };
+
+        boton.addMouseListener(ml);
+        boton.setTransferHandler(new TransferHandler("text"));
     }
 }

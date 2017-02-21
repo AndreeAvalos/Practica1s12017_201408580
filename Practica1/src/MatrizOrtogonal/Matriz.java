@@ -13,6 +13,12 @@ import javax.swing.border.LineBorder;
 import Juego.OTablero;
 import Juego.Tablero;
 import static LeerXML.LeerXML.ListaValores;
+import static LeerXML.LeerXML.dim;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.JComponent;
+import javax.swing.JTextField;
+import javax.swing.TransferHandler;
 
 /**
  *
@@ -67,8 +73,8 @@ public class Matriz {
                 //System.out.print(derecha.getX()+ "," + abajo.getY()+ " ");
                 pos = (OTablero) Actual.getDato();
                 //System.out.print(pos.getPosx() + "," + pos.getPosy() + " ");
-                JLabel posT = pos.getContenedor();
-                posT.setText(Integer.toString(pos.getNum()));
+                JTextField posT = pos.getContenedor();
+                //posT.setText(Integer.toString(pos.getNum()));
                 posT.setBorder(LineBorder.createGrayLineBorder());
                 posT.setBounds(i * 50, j * 35, 50, 35);
                 tab.add(posT);
@@ -98,18 +104,46 @@ public class Matriz {
     int contador = 0;
 
     public void llenar(int x, int y) {
-        JLabel posT;
+        JTextField posT;
         String con = "";
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
                 OTablero data = new OTablero();
                 data.setPosx(i);
                 data.setPosy(j);
-                posT = new JLabel();
-                data.setContenedor(posT);
+                posT = new JTextField();
+
                 //con = Integer.toString(contador);
                 //System.out.println("POS x:"+data.getPosx()+" Y: "+data.getPosy());
                 data.setNum(contador);
+                MouseListener ml = new MouseListener() {
+
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        JComponent jc = (JComponent) e.getSource();
+                        TransferHandler th = jc.getTransferHandler();
+                        th.exportAsDrag(jc, e, TransferHandler.COPY);
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                    }
+                };
+                
+                posT.addMouseListener(ml);
+                data.setContenedor(posT);
                 switch (ListaValores.ExistePos(i, j)) {
                     case 1:
                         data.setValor(1);
@@ -124,7 +158,7 @@ public class Matriz {
                         data.setValor(1);
                         break;
                 }
-                insertar(i, j, data);  
+                insertar(i, j, data);
                 contador++;
             }
         }
@@ -143,10 +177,10 @@ public class Matriz {
             //declaramos especificaciones del archivo 
             writer = new PrintWriter(file);
             writer.append("digraph ListaSimple{ ");
-            writer.append("\tnode [fontcolor=\"cyan\", height=0.5, color=\"black\"]\n");
-            writer.append("[shape=box, style=filled, color=black]");
-            writer.append("\tedge  [color=\"black\", dir=fordware]\n");
-            writer.append("\trankdir=LR \n");
+//            writer.append("\tnode [fontcolor=\"cyan\", height=0.5, color=\"black\"]\n");
+//            writer.append("[shape=box, style=filled, color=black]");
+//            writer.append("\tedge  [color=\"black\", dir=fordware]\n");
+//            writer.append("\trankdir=LR \n");
             writer.append("\n");
 
             NodoMatriz abajo, arriba, derecha, izquierda, Actual, Auxiliar, Auxiliar2, Auxiliar3;
@@ -157,27 +191,61 @@ public class Matriz {
             int x = 0;
             int y = 0;
 
+            int nncolumna = 0;
+            int nnfila = dim;
+
+            {
+                do {
+                    abajo = cabecera.getPrimero().getColumna().getPrimero();
+                    do {
+                        pos = (OTablero) Actual.getDato();
+//
+//                    if (y == 0) {
+//                        writer.append("\n" + pos.getNum());
+//                    } else {
+//                        writer.append("->" + pos.getNum());
+//                    }
+                        writer.append(pos.getNum() + "[style =\"filled\"; label=\"" + pos.getPosx() + "," + pos.getPosy() + "\"; pos= \"" + nncolumna + "," + nnfila + "!\"];\n");
+
+                        abajo = abajo.getAbajo();
+                        Actual = Actual.getAbajo();
+                        nncolumna++;
+                        y++;
+                    } while (abajo != null);
+
+                    derecha = derecha.getDerecha();
+                    Actual = derecha;
+                    x++;
+                    nncolumna = 0;
+                    nnfila--;
+                } while (derecha != null);
+            }
+
+            x = 0;
+            y = 0;
+
+            derecha = lateral.primero.getFila().primero;
+            Actual = derecha;
             do {
                 abajo = cabecera.getPrimero().getColumna().getPrimero();
                 do {
                     pos = (OTablero) Actual.getDato();
 
                     if (y == 0) {
+
                         writer.append("\n" + pos.getNum());
                     } else {
                         writer.append("->" + pos.getNum());
                     }
-
                     abajo = abajo.getAbajo();
                     Actual = Actual.getAbajo();
-
                     y++;
+
                 } while (abajo != null);
 
                 derecha = derecha.getDerecha();
                 Actual = derecha;
                 x++;
-
             } while (derecha != null);
 
             /*------------------------------------------------------------------------------------*/
@@ -254,7 +322,6 @@ public class Matriz {
                 Auxiliar3 = arriba;
                 y++;
             }
-
         } catch (IOException e) {
         } finally {
             try {
@@ -271,7 +338,7 @@ public class Matriz {
 
     public void GenerarGrafo(String Nombre) {
         try {
-            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\fdp.exe";
 
             String fileInputPath = "C:\\graficas\\" + Nombre + ".txt";
             String fileOutputPath = "C:\\graficas\\" + Nombre + ".png";

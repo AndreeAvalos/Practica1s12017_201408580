@@ -212,17 +212,26 @@
       </Properties>
       <Events>
         <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jButton7MouseDragged"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton7MouseEntered"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton7MousePressed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton8">
       <Properties>
         <Property name="text" type="java.lang.String" value="jButton8"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton8MouseEntered"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton9">
       <Properties>
         <Property name="text" type="java.lang.String" value="jButton9"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton9MouseEntered"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton10">
       <Properties>
@@ -231,6 +240,9 @@
           <Dimension value="[73, 23]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton10MouseEntered"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton11">
       <Properties>
@@ -239,6 +251,10 @@
           <Dimension value="[73, 23]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton11MouseEntered"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton12">
       <Properties>
@@ -247,6 +263,9 @@
           <Dimension value="[73, 23]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton12MouseExited"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton13">
       <Properties>
@@ -255,6 +274,9 @@
           <Dimension value="[73, 23]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton13MouseEntered"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -267,6 +289,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ingresar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14ActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -289,7 +314,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButton15">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton15"/>
+        <Property name="text" type="java.lang.String" value="Ingresar Usuario"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton15ActionPerformed"/>
