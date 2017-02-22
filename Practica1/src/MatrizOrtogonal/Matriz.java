@@ -176,7 +176,7 @@ public class Matriz {
 
             //declaramos especificaciones del archivo 
             writer = new PrintWriter(file);
-            writer.append("digraph ListaSimple{ ");
+            writer.append("digraph Matriz{ ");
 //            writer.append("\tnode [fontcolor=\"cyan\", height=0.5, color=\"black\"]\n");
 //            writer.append("[shape=box, style=filled, color=black]");
 //            writer.append("\tedge  [color=\"black\", dir=fordware]\n");
